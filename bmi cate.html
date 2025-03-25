@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Category</title>
+    <link rel="stylesheet" href="bmistyle.css">
+</head>
+<body>
+    <header>
+        <h1>Fitcheck BMI Calculator</h1>
+    </header>
+
+    <section id="calculator">
+        <h2>BMI Calculator</h2>
+        <label for="number1">Height in meters:</label>
+        <input type="text" id="number1"><br><br>
+        <label for="number2">Weight in kg:</label>
+        <input type="text" id="number2">
+        <button onclick="add()">Check BMI</button>
+        <p id="change">BMI 0</p>
+    </section>
+
+    <section id="about">
+        <h2>About BMI</h2>
+        <p>Body Mass Index (BMI) is a simple calculation using a person's height and weight. The formula is BMI = kg/m<sup>2</sup> where kg is a person's weight in kilograms and m<sup>2</sup> is their height in meters squared. A BMI of 25.0 or more is overweight, while the healthy range is 18.5 to 24.9. BMI applies to most adults 18-65 years.</p>
+    </section>
+
+    <section id="chart">
+        <h2>BMI Categories</h2>
+        <table>
+            <tr>
+                <th>Category</th>
+                <th>BMI Range</th>
+            </tr>
+            <tr>
+                <td>Underweight</td>
+                <td>Less than 18.5</td>
+            </tr>
+            <tr>
+                <td>Normal weight</td>
+                <td>18.5–24.9</td>
+            </tr>
+            <tr>
+                <td>Overweight</td>
+                <td>25–29.9</td>
+            </tr>
+            <tr>
+                <td>Obesity</td>
+                <td>30 or greater</td>
+            </tr>
+        </table>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Fitcheck BMI Calculator</p>
+    </footer>
+
+    <script>
+        function add(){
+            var num1 = document.getElementById("number1");
+            var num2 = document.getElementById("number2");
+            var height = parseFloat(num1.value);
+            var weight = parseFloat(num2.value);
+            var BMI = weight / (height * height);
+            var category = getBMICategory(BMI);
+            var result = "BMI: " + BMI.toFixed(2) + " (" + category + ")";
+            var a = document.getElementById("change");
+            a.textContent = result;
+        }
+
+        function getBMICategory(BMI) {
+            if (BMI < 18.5) {
+                return "Underweight";
+            } else if (BMI >= 18.5 && BMI < 24.9) {
+                return "Normal weight";
+            } else if (BMI >= 25 && BMI < 29.9) {
+                return "Overweight";
+            } else {
+                return "Obesity";
+            }
+        }
+    </script>
+</body>
+</html>
